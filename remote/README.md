@@ -13,19 +13,36 @@ curl https://raw.githubusercontent.com/aitvann/nixos-config/master/remote/nixos-
 
 ## Nextcloud
 
-After rebuilding the system additional PostgreSQL maintenance is required
+After rebuilding the system a few more steps are required:
 
-```sh
-sudo -i nextcloud-occ db:add-missing-indices
-sudo -i nextcloud-occ maintenance:mode --on
-sudo -i nextcloud-occ db:convert-filecache-bigint
-sudo -i nextcloud-occ maintenance:mode --off
-```
+* Add password files
+
+    Add database password
+
+    ```sh
+    umask 077
+    sudo -i nvim /var/nextcloud-db-pass
+    sudo -i chown nextcloud /var/nextcloud-db-pass
+    ```
+
+    Add admin password
+
+    ```sh
+    umask 077
+    sudo -i nvim /var/nextcloud-admin-pass
+    sudo -i chown nextcloud /var/nextcloud-admin-pass
+    ```
+
+* Additional PostgreSQL maintenance
+
+    ```sh
+    sudo -i nextcloud-occ db:add-missing-indices
+    sudo -i nextcloud-occ maintenance:mode --on
+    sudo -i nextcloud-occ db:convert-filecache-bigint
+    sudo -i nextcloud-occ maintenance:mode --off
+    ```
 
 Do not forget to rebuild the system one moretime !
-
-Passwords for database and admin are not used because data entrypted
-on client side anyway
 
 ```sh
 sudo nixos-rebuild switch
