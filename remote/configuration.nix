@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ./hardware-configuration.nix
-
+    ./nextcloud.nix
 
   ];
 
@@ -9,6 +9,11 @@
   zramSwap.enable = true;
   networking.hostName = "venus";
   services.openssh.enable = true;
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  security.acme = {
+    acceptTerms = true;
+    email = "aitvann@gmail.com";
+  };
   users.users = {
     aitvann = {
       isNormalUser = true;
