@@ -33,14 +33,7 @@ After rebuilding the system a few more steps are required:
     sudo -i chown nextcloud /var/nextcloud-admin-pass
     ```
 
-* Additional PostgreSQL maintenance
-
-    ```sh
-    sudo -i nextcloud-occ db:add-missing-indices
-    sudo -i nextcloud-occ maintenance:mode --on
-    sudo -i nextcloud-occ db:convert-filecache-bigint
-    sudo -i nextcloud-occ maintenance:mode --off
-    ```
+* Download and enable End-To-End Entryption app
 
 Do not forget to rebuild the system one moretime !
 

@@ -15,7 +15,7 @@
 
     # Setup Nextcloud virtual host to listen on ports
     virtualHosts = {
-      "aitvann.net" = {
+      "storage.aitvann.net" = {
         ## Force HTTP redirect to HTTPS
         forceSSL = true;
         ## LetsEncrypt
@@ -27,7 +27,7 @@
   # Actual Nextcloud Config
   services.nextcloud = {
     enable = true;
-    hostName = "aitvann.net";
+    hostName = "storage.aitvann.net";
 
     # Use HTTPS for links
     https = true;
