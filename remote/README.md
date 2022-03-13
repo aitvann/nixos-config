@@ -11,9 +11,19 @@ and then reinstalled to NixOS using [NixOS-Infect][nixos-infect] with a little [
 curl https://raw.githubusercontent.com/aitvann/nixos-config/master/remote/nixos-infect-patched.sh | NIX_CHANNEL=nixos-21.11 bash -x
 ```
 
-## Nextcloud
+After rebuilding the system a few more steps are required.
 
-After rebuilding the system a few more steps are required:
+## Wireguard
+
+* Generate key pair
+
+    ```sh
+    umask 077
+    sudo -i wg genkey > /var/wireguard-privatekey
+    sudo -i wg pubkey < /var/wireguard-privatekey > /var/wireguard-publickey
+    ```
+
+## Nextcloud
 
 * Add password files
 

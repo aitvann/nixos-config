@@ -2,14 +2,17 @@
   imports = [
     ./hardware-configuration.nix
     ./nextcloud.nix
-
+    ./wireguard.nix
   ];
 
   boot.cleanTmpDir = true;
   zramSwap.enable = true;
   networking.hostName = "venus";
   services.openssh.enable = true;
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 51820 ];
+  networking.nat.enable = true;
+  networking.nat.externalInterface = "eth0";
+  networking.nat.internalInterfaces = [ "wg0" ];
   security.acme = {
     acceptTerms = true;
     email = "aitvann@gmail.com";
